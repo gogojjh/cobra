@@ -27,11 +27,11 @@ Cobra comprises xxx **modules**:
 Click on the following links to install Cobra's modules and get started! 
 It is very easy to install!
 
-### [R3LIVE-LIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
+### [R3LIVE-LVIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
 
 <div align="center">
     <a href="http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live">
-      <img src="docs/media/r3live_SLAM.gif" alt="R3LIVE-LIO">
+      <img src="docs/media/r3live_SLAM.gif" alt="R3LIVE-LVIO">
    </a>
 </div>
 
