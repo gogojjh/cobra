@@ -1,13 +1,16 @@
 <div align="center">
   <a href="">
-    <img align="center" src="docs/media/IADC_logo.png" width="150" alt="IADC">
+    <img align="left" src="docs/media/IADC_logo.png" height="100" alt="IADC">
   </a>
   <a href="">
-    <img align="center" src="docs/media/cobra_logo.png" width="150" alt="cobra">
+    <img align="center" src="docs/media/cobra_logo.png" height="130" alt="cobra">
   </a>
+  <!-- <a href="">
+    <img align="" src="docs/media/hkustgz_logo.png" height="80" alt="hkustgz">
+  </a>   -->
   <a href="">
-    <img align="center" src="docs/media/hkustgz_logo.png" width="150" alt="hkustgz">
-  </a>  
+    <img align="right" src="docs/media/hkust_only_pattern.png" height="100" alt="hkustgz">
+  </a>    
 </div>
 
 # Cobra
@@ -58,7 +61,7 @@ If you found any of the above modules useful, we would really appreciate if you 
 
 ## Open-Source Datasets
 
-We release an open-source dataset: [FusionPortable]() [1] for real-life tests. 
+We release an open-source dataset: [FusionPortable](https://ram-lab.com/file/site/fusionportable/dataset/fusionportable) [1] for real-life tests. 
 The dataset provides:
 - 3D LiDAR
 - Stereo Frame Cameras
