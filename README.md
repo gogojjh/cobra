@@ -42,6 +42,11 @@ It is very easy to install!
 
 <!-- ![overall_chart]() -->
 
+### Install
+```
+docker pull iidcramlab/cobra_x86:20230209-ros_noetic-py3-torch-cuda11.4
+```
+
 ## Citation
 
 If you found any of the above modules useful, we would really appreciate if you could cite our work:

@@ -5,6 +5,13 @@ FROM nvcr.io/nvidia/cuda:11.4.0-devel-ubuntu20.04
 LABEL maintainer="gogojjh <jiaojh1994@gmail.com>"
 
 ############### Basic Ubuntu command
+# TZData goes first.
+RUN apt-get update
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get -y install tzdata
+
 RUN mkdir -p /usr/app
 RUN apt-get update && apt-get install -y \
   libatlas-base-dev \
@@ -31,35 +38,30 @@ RUN apt-get update && apt-get install -y \
 RUN apt install -y \
   cmake 
 
-# Install catkin_build
-RUN apt-get install -y wget 
-RUN wget http://packages.ros.org/ros.key -O - |  apt-key add - 
-RUN apt-get -y install python3-catkin-tools
-
 # Install ROS-Noetic
 RUN sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
-RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-RUN apt update && apt install -y \
-  ros-noetic-ros-base
-RUN source /opt/ros/noetic/setup.bash
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
+RUN apt update && apt install -y ros-noetic-ros-base
+RUN bash /opt/ros/noetic/setup.bash
 RUN apt install -y \
   python3-rosdep \
   python3-rosinstall \
   python3-rosinstall-generator \
   python3-wstool \
   build-essential \
-  python3-rosdep
-RUN rosdep init && rosdep update
+  python3-rosdep \
+  python3-pip \
+  python3-setuptools
+RUN rosdep init 
+RUN rosdep update
+ENV ROS_DISTRO=noetic
+
+# Install catkin_build
+RUN apt-get install -y wget 
+RUN wget http://packages.ros.org/ros.key -O - |  apt-key add - 
+RUN apt-get -y install python3-catkin-tools
 
 ############### Nvblox (Mapping)
-# TZData goes first.
-RUN apt-get update
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Asia/Beijing
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-# Need to install on the terminal
-# RUN apt-get -y install tzdata
-
 # Install gtest
 RUN cd /usr/app && git clone https://github.com/google/googletest
 RUN cd /usr/app/googletest && cmake . && cmake --build . --target install
@@ -122,8 +124,9 @@ RUN apt-get install -y \
   ros-${ROS_DISTRO}-ros-numpy \
   ros-${ROS_DISTRO}-vision-msgs
 
-COPY segnet/requirements.txt /usr/app/segnet_requirements.txt
-RUN pip3 install -r /usr/app/segnet_requirements.txt
+RUN mkdir /usr/app/segnet_requirements
+COPY segnet/requirements.txt /usr/app/segnet/requirements.txt
+RUN pip3 install -r /usr/app/segnet/requirements.txt
 
 ############### Hybrid A* (Path Planning)
 
