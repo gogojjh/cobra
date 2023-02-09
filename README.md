@@ -1,19 +1,13 @@
-<!-- <div align="center">
-  <a href="http://mit.edu/sparklab/">
-    <img align="left" src="docs/media/sparklab_logo.png" width="80" alt="sparklab">
-  </a>
-  <a href="https://www.mit.edu/~arosinol/">
-    <img align="center" src="docs/media/kimeravio_logo.png" width="150" alt="kimera">
-  </a>
-  <a href="https://mit.edu">
-    <img align="right" src="docs/media/mit.png" width="100" alt="mit">
-  </a>
-</div> -->
-
 <div align="center">
   <a href="">
-    <img align="center" src="docs/media/cobra_logo.png" width="150" alt="">
+    <img align="center" src="docs/media/IADC_logo.png" width="150" alt="IADC">
   </a>
+  <a href="">
+    <img align="center" src="docs/media/cobra_logo.png" width="150" alt="cobra">
+  </a>
+  <a href="">
+    <img align="center" src="docs/media/hkustgz_logo.png" width="150" alt="hkustgz">
+  </a>  
 </div>
 
 # Cobra
@@ -30,21 +24,16 @@ Cobra comprises xxx **modules**:
   - A tool to support ROS-enabled NvBLOX ([Cobra-Tool-ros-nvblox](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/glimpse_nvblox_ros1))
   - A tool to convert LiDAR points into depth/height images ([Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter))
 
-<!-- <p align="center">
-    <a href="https://www.youtube.com/watch?v=-5XxXRABXJs">
-    <img src="docs/media/kimera_thumbnail.png" alt="Kimera">
-    </a>
-</p> -->
+Click on the following links to install Cobra's modules and get started! 
+It is very easy to install!
 
-<!-- Click on the following links to install Kimera's modules and get started! It is very easy to install! -->
+### [R3LIVE-LIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
 
-<!-- ### [Kimera-VIO & Kimera-Mesher](https://github.com/MIT-SPARK/Kimera-VIO) -->
-
-<!-- <div align="center">
-    <a href="https://github.com/MIT-SPARK/Kimera-VIO">
-      <img src="docs/media/kimeravio_ROS_mesh.gif" alt="Kimera-VIO">
+<div align="center">
+    <a href="http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live">
+      <img src="docs/media/r3live_SLAM.gif" alt="R3LIVE-LIO">
    </a>
-</div> -->
+</div>
 
 ### Chart
 
@@ -54,36 +43,31 @@ Cobra comprises xxx **modules**:
 
 If you found any of the above modules useful, we would really appreciate if you could cite our work:
 
-<!-- - [1] A. Rosinol, T. Sattler, M. Pollefeys, L. Carlone. [**Incremental Visual-Inertial 3D Mesh Generation with Structural Regularities**](https://arxiv.org/abs/1903.01067). IEEE Int. Conf. on Robotics and Automation (ICRA), 2019. [arXiv:1903.01067](https://arxiv.org/abs/1903.01067)
+- [1] Jiao, J., Wei, H., Hu, T., Hu, X., Zhu, Y., He, Z., ... & Liu, M. [**FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms**](https://arxiv.org/abs/2208.11865). In 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE.
 
 ```bibtex
-@InProceedings{Rosinol19icra-incremental,
-  title = {Incremental visual-inertial 3d mesh generation with structural regularities},
-  author = {Rosinol, Antoni and Sattler, Torsten and Pollefeys, Marc and Carlone, Luca},
-  year = {2019},
-  booktitle = {2019 International Conference on Robotics and Automation (ICRA)},
-  pdf = {https://arxiv.org/pdf/1903.01067.pdf}
+@inproceedings{jiao2022fusionportable,
+  title={FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms},
+  author={Jiao, Jianhao and Wei, Hexiang and Hu, Tianshuai and Hu, Xiangcheng and Zhu, Yilong and He, Zhijian and Wu, Jin and Yu, Jingwen and Xie, Xupeng and Huang, Huaiyang and others},
+  booktitle={2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={3851--3856},
+  year={2022},
+  organization={IEEE}
 }
-``` -->
+```
 
 ## Open-Source Datasets
 
-<!-- In addition to the [real-life tests](http://ci-sparklab.mit.edu:8080/job/MIT-SPARK-Kimera/job/master/VIO_20Euroc_20Performance_20Report/) on the [Euroc](https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) dataset, we use a photo-realistic Unity-based simulator to test Kimera.
-The simulator provides:
-- RGB Stereo camera
-- Depth camera
-- Ground-truth 2D Semantic Segmentation
+We release an open-source dataset: [FusionPortable]() [1] for real-life tests. 
+The dataset provides:
+- 3D LiDAR
+- Stereo Frame Cameras
+- Stereo Event Cameras
 - IMU data
 - Ground-Truth Odometry
-- 2D Lidar
-- TF (ground-truth odometry of robots, and agents)
-- Static TF (ground-truth poses of static objects)
-
-Using this simulator, we created several large visual-inertial datasets which feature scenes with and without dynamic agents (humans), as well as a large variety of environments (indoors and outdoors, small and large).
-These are ideal to test your Metric-Semantic SLAM and/or other Spatial-AI systems!
-
-- [uHumans](http://web.mit.edu/sparklab/datasets/uHumans/) (released with [3])
-- [uHumans2](http://web.mit.edu/sparklab/datasets/uHumans2/) (released with [4]) -->
+- (Optional: Ground-truth 2D Semantic Segmentation))
+- (Optional: TF (ground-truth odometry of robots, and agents))
+- (Optional: Static TF (ground-truth poses of static objects))
 
 ## Acknowledgments
 
