@@ -45,6 +45,14 @@ It is very easy to install!
 ### Install
 ```
 docker pull iidcramlab/cobra_x86:20230209-ros_noetic-py3-torch-cuda11.4
+nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  -v /home/jjiao/mapping_ws/src:/Titan/code/mapping_ws/src \
+  -v /Titan/dataset:/Titan/dataset \
+  -v /Spy/dataset:/Spy/dataset \
+  --privileged --cap-add sys_ptrace \
+  -it --name cobra iidcramlab/cobra_x86:20230209-ros_noetic-py3-torch-cuda11.4 \
+  /bin/bash
 ```
 
 ## Citation
