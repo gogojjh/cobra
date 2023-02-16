@@ -33,10 +33,20 @@ It is very easy to install!
 
 ### Overall Results
 
+HKUST(GZ)
 <div align="center">
     <a href="">
-      <img src="docs/media/r3live_nvblox_Mapping.gif" alt="r3live_nvblox_Mapping">
+      <img src="docs/media/r3live_nvblox_Mapping.gif" width="80%" 
+      alt="r3live_nvblox_Mapping">
    </a>
+</div>
+
+SemanticKITTI Sequence07
+<div align="center">
+    <a href="">
+      <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="80%" 
+      alt="nvblox_mesh_semantickitti07">
+   </a>   
 </div>
 
 ### [R3LIVE-LVIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
