@@ -19,7 +19,7 @@ Cobra is a C++/Python library for metric-semantic-driven navigation in both unst
 Cobra is modular, ROS-enabled, and runs on CPU+GPU.
 
 Cobra comprises four **modules**:
-- A fast and accurate LiDAR-Vision-Inertial Odometry (LVIO) pipeline ([Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live))
+- A fast and accurate LiDAR-Vision-Inertial Odometry (LVIO) ([Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live))
 - A semantic segmentation (perception) module (high-performance) ([Cobra-Semantics](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/hkustgz_segnet))
 - A metric-semantic dense mapping system ([Cobra-Mapping](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/nvblox)) 
   and its ROS-enabled plugins ([Cobra-ROS-Mapping](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/glimpse_nvblox_ros1))
@@ -32,9 +32,13 @@ Cobra comprises four **modules**:
 Click on the following links to install Cobra's modules and get started! 
 It is very easy to install!
 
-### Overall Results
+#### Overall Results of Cobra
 
 HKUST(GZ)
+```
+roslaunch r3live r3live_bag_ouster128_raw.launch use_vio:=false play_bag_rate:=1.0 play_bag_start:=0
+roslaunch nvblox_ros nvblox_lidar_ros_fusionportable.launch
+```
 <div align="center">
     <a href="">
       <img src="docs/media/r3live_nvblox_Mapping.gif" width="80%" 
@@ -42,7 +46,11 @@ HKUST(GZ)
    </a>
 </div>
 
-SemanticKITTI Sequence07
+SemanticKITTI Sequence07 (LiDAR-based semantics)
+```
+rosbag play semantickitti_sequence07.bag
+roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
+```
 <div align="center">
     <a href="">
       <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="80%" 
@@ -50,7 +58,13 @@ SemanticKITTI Sequence07
    </a>   
 </div>
 
-### [R3LIVE-LVIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
+KITTI-360 (Image-based semantics) (TBC)
+```
+rosbag play semantickitti_sequence07.bag
+roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
+```
+
+<!-- ### [R3LIVE-LVIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live) -->
 
 <!-- <div align="center">
     <a href="http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live">
@@ -58,11 +72,12 @@ SemanticKITTI Sequence07
    </a>
 </div> -->
 
-### Chart
+## Chart
 
 <!-- ![overall_chart]() -->
 
-### Install
+## 1. Installation
+We provide the [DockerFile](docker/Dockerfile_x86) or the compiled docker image:
 ```
 docker pull iidcramlab/cobra_x86:20230209-ros_noetic-py3-torch-cuda11.4
 nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
@@ -73,6 +88,24 @@ nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network hos
   --privileged --cap-add sys_ptrace \
   -it --name cobra iidcramlab/cobra_x86:20230209-ros_noetic-py3-torch-cuda11.4 \
   /bin/bash
+```
+Please follow the below tutorial to install individual packages
+* [Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
+* [Cobra-Semantics](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/hkustgz_segnet)
+* [Cobra-Mapping](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/nvblox)
+* [Cobra-Planner](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_planner)
+* [Cobra-Tool](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools)
+* [Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter)
+
+## 2. Usage
+Test with the **FusionPortable** Dataset
+```
+bash scripts/run_cobra_fusionportable.sh
+```
+
+Test with the **SemanticKITTI** Dataset
+```
+bash scripts/run_cobra_semantickitti.sh
 ```
 
 ## Citation
