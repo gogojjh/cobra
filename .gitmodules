@@ -2,3 +2,6 @@
 	path = src/cobra_tools
 	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools
 	branch = master
+[submodule "src/pointcloud_image_converter"]
+	path = src/pointcloud_image_converter
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter
