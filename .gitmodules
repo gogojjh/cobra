@@ -1,0 +1,4 @@
+[submodule "cobra_tools"]
+       path = src/cobra_tools
+       url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools.git
+       branch = cobra_tools
