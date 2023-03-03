@@ -11,3 +11,6 @@
 [submodule "src/r3live"]
 	path = src/r3live
 	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live
+[submodule "src/glimpse_nvblox_ros1"]
+	path = src/glimpse_nvblox_ros1
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/glimpse_nvblox_ros1
