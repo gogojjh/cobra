@@ -14,3 +14,6 @@
 [submodule "src/glimpse_nvblox_ros1"]
 	path = src/glimpse_nvblox_ros1
 	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/glimpse_nvblox_ros1
+[submodule "src/hkustgz_segnet"]
+	path = src/hkustgz_segnet
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/hkustgz_segnet
