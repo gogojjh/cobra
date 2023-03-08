@@ -23,3 +23,6 @@
 [submodule "src/rviz_plugin_tutorials"]
 	path = src/rviz_plugin_tutorials
 	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/rviz_plugin_tutorials.git
+[submodule "src/src/lcecalib"]
+	path = src/src/lcecalib
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/multisensor_calibration/lcecalib
