@@ -26,3 +26,6 @@
 [submodule "src/src/lcecalib"]
 	path = src/src/lcecalib
 	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/multisensor_calibration/lcecalib
+[submodule "src/lcecalib"]
+	path = src/lcecalib
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/multisensor_calibration/lcecalib
