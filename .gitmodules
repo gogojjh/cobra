@@ -17,3 +17,9 @@
 [submodule "src/hkustgz_segnet"]
 	path = src/hkustgz_segnet
 	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/hkustgz_segnet
+[submodule "src/rviz_plugins"]
+	path = src/rviz_plugins
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/rviz_plugins.git
+[submodule "src/rviz_plugin_tutorials"]
+	path = src/rviz_plugin_tutorials
+	url = http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/rviz_plugin_tutorials.git

@@ -128,6 +128,10 @@ RUN mkdir /usr/app/segnet_requirements
 COPY segnet/requirements.txt /usr/app/segnet/requirements.txt
 RUN pip3 install -r /usr/app/segnet/requirements.txt
 
-############### Hybrid A* (Path Planning)
+############### Cobra-Planner
+RUN pip3 install open3d --ignore-installed PyYAML
+RUN pip3 install --upgrade numexpr
+RUN pip3 install -U g2o-python
 
 ############### Tools
+RUN pip3 install pandas
