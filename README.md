@@ -36,7 +36,7 @@ It is very easy to install!
 
 HKUST(GZ)
 ```
-roslaunch r3live r3live_bag_ouster128_raw.launch use_vio:=false play_bag_rate:=1.0 play_bag_start:=0
+roslaunch r3live r3live_bag_ouster128_raw.launch
 roslaunch nvblox_ros nvblox_lidar_ros_fusionportable.launch
 ```
 <div align="center">
@@ -58,19 +58,18 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
    </a>   
 </div>
 
-KITTI-360 (Image-based semantics) (TBC)
+KITTI-360 (Image-based semantics) 
 ```
-rosbag play semantickitti_sequence07.bag
-roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
+rosbag play nvblox_mesh_2013_05_28_drive_0003_sync.bag
+roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
 ```
+<div align="center">
+    <a href="">
+      <img src="docs/media/nvblox_mesh_2013_05_28_drive_0003_sync.gif" width="80%" 
+      alt="nvblox_mesh_2013_05_28_drive_0003_sync">
+   </a>   
+</div>
 
-<!-- ### [R3LIVE-LVIO](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live) -->
-
-<!-- <div align="center">
-    <a href="http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live">
-      <img src="docs/media/r3live_SLAM.gif" alt="R3LIVE-LVIO">
-   </a>
-</div> -->
 
 ## Chart
 
@@ -103,6 +102,11 @@ Test with the **FusionPortable** Dataset
 bash scripts/run_cobra_fusionportable.sh
 ```
 
+Test with the **SemanticFusionPortable** Dataset
+```
+bash scripts/run_cobra_semanticfusionportable.sh
+```
+
 Test with the **SemanticKITTI** Dataset
 ```
 bash scripts/run_cobra_semantickitti.sh
@@ -112,7 +116,7 @@ bash scripts/run_cobra_semantickitti.sh
 
 If you found any of the above modules useful, we would really appreciate if you could cite our work:
 
-- [1] Jiao, J., Wei, H., Hu, T., Hu, X., Zhu, Y., He, Z., ... & Liu, M. [**FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms**](https://arxiv.org/abs/2208.11865). In 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE.
+- [1] Jiao, J., Wei, H., Hu, T., Hu, X., Zhu, Y., ... & Liu, M. [**FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms**](https://arxiv.org/abs/2208.11865). In 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE.
 
 ```bibtex
 @inproceedings{jiao2022fusionportable,
@@ -143,3 +147,22 @@ The dataset provides:
 ## License
 
 [BSD License](LICENSE.BSD)
+
+## TODO
+
+* [x] The currect label definition of semanticKITTI and Cityscapes are different. Would it be possible to unify them? 
+
+	> 0 in Cityscapes: Road (train id); 0 in semanticKITTI: unlabelled
+
+* [ ] How to handle unlabeled data in case of avoiding over-fitting unlabeled data?
+
+
+
+
+
+
+
+
+
+
+
