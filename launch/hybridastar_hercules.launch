@@ -14,5 +14,8 @@
   <node pkg="cobra_tools" name="subscribe_path_publish_route" type="subscribe_path_publish_route.py" output="screen" >
     <remap from="/global_planner/nodes" to="/sPathNodes" />
   </node>
+
+  <!-- Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cobra_tools)/../../../rviz_cfg/cobra_hybridastar.rviz" />
  
 </launch>
