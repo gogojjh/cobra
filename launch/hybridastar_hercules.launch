@@ -16,6 +16,6 @@
   </node>
 
   <!-- Rviz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cobra_tools)/../../../rviz_cfg/cobra_hybridastar.rviz" />
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cobra_tools)/../../../rviz_cfg/cobra_hybridastar.rviz" /> -->
  
 </launch>
