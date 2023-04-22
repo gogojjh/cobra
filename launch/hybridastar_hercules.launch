@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+  <!-- TODO -->
+  <arg name="path_to_obstacle_pcd" default="/Spy/dataset/cobra_results/cobra_global_planner_results/w1_lawn_20230422/map_obstacle.pcd" doc="Path to the obstacle pcd"/>
+
+  <!-- Description: global planner -->
+  <include file="$(find hybrid_astar)/launch/manual_hercules.launch" />
+
+  <!-- Description: hercules interface -->
+  <node pkg="cobra_tools" type="publish_pcd_to_occupancygrid.py" name="publish_pcd_to_occupancygrid" output="screen"
+    args="--path_to_obstacle_map $(arg path_to_obstacle_pcd)" >
+  </node>
+  <node pkg="cobra_tools" name="subscribe_path_publish_route" type="subscribe_path_publish_route.py" output="screen" >
+    <remap from="/global_planner/nodes" to="/sPathNodes" />
+  </node>
+ 
+</launch>
