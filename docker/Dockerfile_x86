@@ -135,3 +135,6 @@ RUN pip3 install -U g2o-python
 
 ############### Tools
 RUN pip3 install pandas
+
+# TODO:
+# Open3d c++

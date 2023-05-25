@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <launch>
-  <!-- TODO -->
-  <arg name="path_to_obstacle_pcd" default="/media/udi/JJIAO_UDISK/experiment_hercules_cobra/hkustgz_map/w1_lawn_20230422/map_obstacle.pcd" doc="Path to the obstacle pcd"/>
+  <!-- Obstacle point cloud -->
+  <!-- <arg name="path_to_obstacle_pcd" default="/media/udi/JJIAO_UDISK/experiment_hercules_cobra/hkustgz_map/w1_lawn_20230422/map_obstacle.pcd" doc="Path to the obstacle pcd"/> -->
+
+  <!-- <arg name="path_to_obstacle_pcd" default="/Spy/dataset/cobra_results/cobra_global_planner_results/w1_lawn_20230422/map_obstacle.pcd" doc="Path to the obstacle pcd"/> -->
+  <!-- Description: hercules interface -->
+  <!-- <node pkg="cobra_tools" type="publish_obs_to_occupancygrid.py" name="publish_obs_to_occupancygrid" output="screen"
+    args="-path_to_obstacle_map $(arg path_to_obstacle_pcd)" >
+  </node> -->
+
+  <!-- Drivable point cloud -->
+  <arg name="path_to_drivable_pcd" 
+    default="/media/udi/JJIAO_UDISK/experiment_hercules_cobra/hkustgz_map/map_drivable.pcd" doc="Path to the drivable pcd"/>
+
+  <node pkg="cobra_tools" type="publish_dri_to_occupancygrid.py" name="publish_dri_to_occupancygrid" output="screen"
+    args="--path_to_drivable_map $(arg path_to_drivable_pcd)" >
+  </node>
 
   <!-- Description: global planner -->
-  <include file="$(find hybrid_astar)/launch/manual_hercules.launch" />
+  <!-- <include file="$(find hybrid_astar)/launch/manual_hercules.launch" /> -->
+  <include file="$(find hybrid_astar)/launch/dynamic_hercules.launch" />
 
-  <!-- Description: hercules interface -->
-  <!-- <node pkg="cobra_tools" type="publish_pcd_to_occupancygrid.py" name="publish_pcd_to_occupancygrid" output="screen"
-    args="-path_to_obstacle_map $(arg path_to_obstacle_pcd)" >
-  </node>
   <node pkg="cobra_tools" name="subscribe_path_publish_route" type="subscribe_path_publish_route.py" output="screen" >
     <remap from="/global_planner/nodes" to="/sPathNodes" />
-  </node> -->
+  </node>
  
   <!-- Rviz -->
   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find cobra_tools)/../../../rviz_cfg/cobra_hybridastar.rviz" />
 
   <!-- TF -->
-  <node pkg="tf" type="static_transform_publisher" name="static_tf_sensor_baselink" args="-1.37 0 0 0 0 0 current_lidar globalplanner_base_link 10" />
+  <node pkg="tf" type="static_transform_publisher" name="static_tf_sensor_baselink" args="-1.37 0 0 0 0 0 current_lidar globalplanner_base_link 100" />
 
 </launch>
