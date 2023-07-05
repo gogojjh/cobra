@@ -3,7 +3,7 @@
 <launch>
   <!-- Drivable point cloud -->
   <arg name="path_to_drivable_pcd" 
-  default="/Spy/dataset/cobra_results/cobra_mapping_results/tase_experiment_record/nvblox_proposed/navigation/20230403_hkustgz_vegetation_sequence01_wo_semantics/map_drivable_raw.pcd" doc="Path to the drivable pcd"/>
+  default="/Spy/dataset/cobra_results/cobra_mapping_results/tase_experiment_record/nvblox_proposed/navigation/20230403_hkustgz_vegetation_sequence01_w_semantics/map_drivable_raw.pcd" doc="Path to the drivable pcd"/>
 
   <node pkg="cobra_tools" type="publish_dri_to_occupancygrid.py" name="publish_dri_to_occupancygrid" output="screen"
     args="--path_to_drivable_map $(arg path_to_drivable_pcd)" >
