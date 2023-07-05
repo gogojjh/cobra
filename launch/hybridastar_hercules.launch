@@ -12,7 +12,7 @@
 
   <!-- Drivable point cloud -->
   <arg name="path_to_drivable_pcd" 
-    default="/media/udi/JJIAO_UDISK/experiment_hercules_cobra/hkustgz_map/map_drivable.pcd" doc="Path to the drivable pcd"/>
+    default="/media/udi/JJIAO_UDISK/experiment_hercules_cobra/hkustgz_map/20230403_hkustgz_vegetation_sequence01_w_semantics/map_drivable.pcd" doc="Path to the drivable pcd"/>
 
   <node pkg="cobra_tools" type="publish_dri_to_occupancygrid.py" name="publish_dri_to_occupancygrid" output="screen"
     args="--path_to_drivable_map $(arg path_to_drivable_pcd)" >
