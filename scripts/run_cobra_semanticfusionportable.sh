@@ -27,7 +27,7 @@ roslaunch segnet_ros segnet_ros.launch
 
 rosrun cobra_tools publish_lidar_camera_alignment
 
-# RECORD rosbag
+# RECORD rosbag (record_r3live_semantics_framecam00.sh)
 rosbag record -O $1/r3live_semantics_framecam00.bag \
   /r3live/camera_odom /r3live/camera_path \
   /r3live/aft_mapped_to_init /r3live/path \
