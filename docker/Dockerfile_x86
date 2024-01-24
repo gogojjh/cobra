@@ -1,7 +1,7 @@
 ######################################
 ###### Dockerfile for Cobra
 ######################################
-FROM nvcr.io/nvidia/cuda:11.4.0-devel-ubuntu20.04
+FROM nvcr.io/nvidia/cuda:11.8.0-devel-ubuntu20.04
 LABEL maintainer="gogojjh <jiaojh1994@gmail.com>"
 
 ############### Basic Ubuntu command
@@ -124,7 +124,9 @@ RUN apt-get install -y \
   ros-${ROS_DISTRO}-ros-numpy \
   ros-${ROS_DISTRO}-vision-msgs
 
-RUN pip3 install -r src/HKUSTGZ_SegNet/requirements.txt
+RUN mkdir /usr/app/segnet_requirements
+COPY src/HKUSTGZ_SegNet/requirements.txt /usr/app/segnet/requirements.txt
+RUN pip3 install -r /usr/app/segnet/requirements.txt
 
 ############### Cobra-Planner
 RUN pip3 install open3d --ignore-installed PyYAML
@@ -161,6 +163,6 @@ RUN pip3 install pandas
 # RUN cd Open3D && mkdir build && cd build && cmake .. && make -j4 && make install 
 
 ############### Open3D (GUI)
-RUN apt-get install libgl1-mesa-glx libc++1 libc++1-10 libc++abi1-10 libglfw3 libpng16-16
+RUN apt-get install -y libgl1-mesa-glx libc++1 libc++1-10 libc++abi1-10 libglfw3 libpng16-16
 RUN wget https://github.com/isl-org/Open3D/releases/download/v0.13.0/open3d-app-0.13.0-Ubuntu_20.04.deb
 RUN dpkg -i open3d-app-0.13.0-Ubuntu_20.04.deb
