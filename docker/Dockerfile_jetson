@@ -4,13 +4,6 @@
 FROM nvcr.io/nvidia/l4t-jetpack:r35.2.1
 LABEL maintainer="gogojjh <jiaojh1994@gmail.com>"
 
-############### Jetson configuration
-RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
-RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-RUN apt-get update
-RUN apt-get install cmake python3-pip
-RUN export OPENBLAS_CORETYPE=ARMV8
-
 ############### Basic Ubuntu command
 # TZData goes first.
 RUN apt-get update
@@ -44,6 +37,13 @@ RUN apt-get update && apt-get install -y \
   gdb
 RUN apt install -y \
   cmake 
+
+############### Jetson configuration
+RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
+RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+RUN apt-get update
+RUN apt-get install cmake python3-pip
+RUN export OPENBLAS_CORETYPE=ARMV8
 
 # Install ROS-Noetic
 RUN sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
