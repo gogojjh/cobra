@@ -89,22 +89,22 @@ git clone http://gitlab.ram-lab.com/ramlab_dataset_sensor/cobra --recursive
 Build the docker environment **(X86 PC)**
 ```
 cd cobra
-docker build -t cobra_jetson:20240124-ros_noeti-py3-torch-cuda11.4 -f docker/Dockerfile_jetson .
+docker build -t cobra_x86:20240124-ros_noetic-py3-torch-cuda11.4 -f docker/Dockerfile_x86 .
 ```
 Build the docker environment **(Jetson - ARM PC)**
 ```
 cd cobra
-docker build -t cobra_x86:20240124-ros_noeti-py3-torch-cuda11.4 -f docker/Dockerfile_x86 .
+docker build -t cobra_jetson:20240124-ros_noetic-py3-torch-cuda11.4 -f docker/Dockerfile_jetson .
 ```
 Create the docker container
 ```
-docker pull cobra_x86/jetson:20240124-ros_noeti-py3-torch-cuda11.4
+docker pull cobra_x86/jetson:20240124-ros_noetic-py3-torch-cuda11.4
 nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v /home/jjiao/mapping_ws/src:/Titan/code/mapping_ws/src \
   -v /Titan/dataset:/Titan/dataset \
   --privileged --cap-add sys_ptrace \
-  -it --name cobra cobra_x86/jetson:20240124-ros_noeti-py3-torch-cuda11.4 \
+  -it --name cobra cobra_x86/jetson:20240124-ros_noetic-py3-torch-cuda11.4 \
   /bin/bash
 ```
 Compile the nvblox
