@@ -42,7 +42,7 @@ RUN apt install -y \
 RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
 RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
 RUN apt-get update
-RUN apt-get install cmake python3-pip
+RUN apt-get install cmake python3-pip -y
 RUN export OPENBLAS_CORETYPE=ARMV8
 
 # Install ROS-Noetic
