@@ -107,6 +107,11 @@ nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network hos
   -it --name cobra cobra_x86/jetson:20240124-ros_noeti-py3-torch-cuda11.4 \
   /bin/bash
 ```
+Compile the nvblox
+```
+cd src/glimpse_nvblox_ros1/nvblox/nvblox
+mkdir build && cd build && cmake .. && make -j3
+```
 <!--
 Please follow the below tutorial to install individual packages
 * [Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
