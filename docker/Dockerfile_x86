@@ -82,7 +82,8 @@ RUN apt-get update && apt-get install -y \
   ros-${ROS_DISTRO}-tf2-ros \
   ros-${ROS_DISTRO}-message-filters \
   ros-${ROS_DISTRO}-image-transport \
-  ros-${ROS_DISTRO}-image-transport* 
+  ros-${ROS_DISTRO}-image-transport* \
+  ros-${ROS_DISTRO}-roscpp_tutorials
 
 # Install Python apt dependencies
 RUN apt-get install --no-install-recommends -y \

@@ -110,12 +110,12 @@ nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network hos
   /bin/bash
 ```
 Compile the nvblox
-```
+```shell script
 cd src/glimpse_nvblox_ros1/nvblox/nvblox
 mkdir build && cd build && cmake .. && make -j3
 ```
 Complie other packages
-```
+```shell script
 catkin build r3live pointcloud_image_converter cobra_tools nvblox_ros
 ```
 <!--
@@ -130,18 +130,23 @@ Please follow the below tutorial to install individual packages
 
 ## 2. Usage
 Test with the **FusionPortable** Dataset
-```
+```shell script
 bash scripts/run_cobra_fusionportable.sh
 ```
-
 Test with the **SemanticFusionPortable** Dataset
-```
+```shell script
 bash scripts/run_cobra_semanticfusionportable.sh
 ```
-
 Test with the **SemanticKITTI** Dataset
-```
+```shell script
 bash scripts/run_cobra_semantickitti.sh
+```
+Batch test with all datasets
+```shell script
+roscore 
+rosparam set use_sim_time true
+cd src/cobra_tools/scripts/bash
+bash run_nvblox_proposed.bash
 ```
 
 ## Citation
