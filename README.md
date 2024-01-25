@@ -83,21 +83,23 @@ xxx
 
 ## 1. Installation
 Clone the code
-```
+```shell script
 git clone http://gitlab.ram-lab.com/ramlab_dataset_sensor/cobra --recursive 
+wstool merge ./cobra/cobra_https.rosinstall
+wstool update
 ```
 Build the docker environment **(X86 PC)**: change the first cuda version of **Dockerfile_x86** for you GPU 
-```
+```shell script
 cd cobra
 docker build -t cobra_x86:20240124-ros_noetic-py3-torch-cuda11.4 -f docker/Dockerfile_x86 .
 ```
 Build the docker environment **(Jetson - ARM PC)**
-```
+```shell script
 cd cobra
-docker build -t cobra_jetson:20240124-ros_noetic-py3-torch-cuda11.4 -f docker/Dockerfile_jetson .
+docker build -t cobra_jetson:20240124-ros_noetic-py3-torch-jetpackr35 -f docker/Dockerfile_jetson .
 ```
 Create the docker container
-```
+```shell script
 docker pull cobra_x86:20240124-ros_noetic-py3-torch-cuda11.4
 nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
