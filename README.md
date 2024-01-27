@@ -35,14 +35,14 @@ Click on the following links to install Cobra's modules and get started!
 
 #### Results of Cobra
 
-**Mapping**: HKUST(GZ)
+**Mapping**: Campus (without semantics)
 ```
 roslaunch r3live r3live_bag_ouster128_raw.launch
 roslaunch nvblox_ros nvblox_lidar_ros_fusionportable.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/r3live_nvblox_Mapping.gif" width="60%" 
+      <img src="docs/media/r3live_nvblox_Mapping.gif" width="50%" 
       alt="r3live_nvblox_Mapping">
    </a>
 </div>
@@ -54,7 +54,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="60%" 
+      <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="50%" 
       alt="nvblox_mesh_semantickitti07">
    </a>   
 </div>
@@ -66,7 +66,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/nvblox_mesh_2013_05_28_drive_0003_sync.gif" width="60%" 
+      <img src="docs/media/nvblox_mesh_2013_05_28_drive_0003_sync.gif" width="50%" 
       alt="nvblox_mesh_2013_05_28_drive_0003_sync">
    </a>   
 </div>
@@ -85,28 +85,26 @@ xxx
 Clone the code
 ```shell script
 git clone http://gitlab.ram-lab.com/ramlab_dataset_sensor/cobra --recursive 
-wstool merge ./cobra/cobra_https.rosinstall
+wstool merge cobra/cobra_https.rosinstall
 wstool update
-```
-Build the docker environment **(X86 PC)**: change the first cuda version of **Dockerfile_x86** for you GPU 
-```shell script
 cd cobra
-docker build -t cobra_x86:20240124-ros_noetic-py3-torch-cuda11.4 -f docker/Dockerfile_x86 .
+```
+Build the docker environment **(X86 PC)**: change the cuda version of **Dockerfile_x86** (first line) for you GPU 
+```shell script
+docker build -t cobra_x86:20240124-ros_noetic-py3-torch-cuda -f docker/Dockerfile_x86 .
 ```
 Build the docker environment **(Jetson - ARM PC)**
 ```shell script
-cd cobra
 docker build -t cobra_jetson:20240124-ros_noetic-py3-torch-jetpackr35 -f docker/Dockerfile_jetson .
 ```
 Create the docker container
 ```shell script
-docker pull cobra_x86:20240124-ros_noetic-py3-torch-cuda11.4
+docker pull cobra_x86:20240124-ros_noetic-py3-torch-cuda
 nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-  -v /home/jjiao/mapping_ws/src:/Titan/code/mapping_ws/src \
-  -v /Titan/dataset:/Titan/dataset \
+  -v volume_path_to_host:volume_path_to_docker \
   --privileged --cap-add sys_ptrace \
-  -it --name cobra cobra_x86:20240124-ros_noetic-py3-torch-cuda11.4 \
+  -it --name cobra cobra_x86:20240124-ros_noetic-py3-torch-cuda \
   /bin/bash
 ```
 Compile the nvblox
@@ -143,10 +141,22 @@ bash scripts/run_cobra_semantickitti.sh
 ```
 Batch test with all datasets
 ```shell script
-roscore 
 rosparam set use_sim_time true
 cd src/cobra_tools/scripts/bash
 bash run_nvblox_proposed.bash
+```
+Monitor the CPU, GPU, and memory of the PC
+```shell script
+rosrun cobra_tools monitor_pc_status.py -c /Spy/dataset/tmp/logs/cpu_gpu_utils_0.1
+```
+
+## 3. Key parameters
+```
+voxel_size: 0.3 (SemanticKITTI00, 02, 08), 0.25 (other sequences)
+mesh: 0 (not save mesh result), 1 (save mesh result)
+dataset_type: the id of different datasets
+max_mesh_update_time: the frequency of saving mesh. For example: 0.1 for 10Hz
+performance_monitor: 0 (not monitor CPU and GPU usage), 1 (monitor CPU and GPU usage)
 ```
 
 ## Citation
@@ -157,7 +167,7 @@ If you found any of the above modules useful, we would really appreciate if you 
 
 ```bibtex
 @inproceedings{jiao2022fusionportable,
-  title={FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms},
+  title={Real-Time Metric-Semantic Mapping for Autonomous Navigation in Outdoor Environments},
   author={Jiao, Jianhao and Wei, Hexiang and Hu, Tianshuai and Hu, Xiangcheng and Zhu, Yilong and He, Zhijian and Wu, Jin and Yu, Jingwen and Xie, Xupeng and Huang, Huaiyang and others},
   booktitle={2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   pages={3851--3856},
