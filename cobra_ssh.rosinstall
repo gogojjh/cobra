@@ -13,3 +13,6 @@
 - git:
     local-name: glog_catkin
     uri: git@github.com:ethz-asl/glog_catkin.git
+- git:
+    local-name: yaml_cpp_catkin
+    url: git@github.com:ethz-asl/yaml_cpp_catkin
