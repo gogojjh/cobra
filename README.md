@@ -1,18 +1,19 @@
 <div align="center">
-  <a href="">
+  <!--<a href="">
     <img align="left" src="docs/media/IADC_logo.png" height="100" alt="IADC">
-  </a>
+  </a>-->
   <a href="">
     <img align="center" src="docs/media/cobra_logo.png" height="130" alt="cobra">
-  </a>
+  </a> 
   <!-- <a href="">
     <img align="" src="docs/media/hkustgz_logo.png" height="80" alt="hkustgz">
   </a>   -->
-  <a href="">
+  <!-- <a href="">
     <img align="right" src="docs/media/hkust_only_pattern.png" height="100" alt="hkustgz">
-  </a>    
+  </a> -->
 </div>
 
+<!--
 # Cobra
 
 Cobra is a C++/Python library for metric-semantic-driven navigation in both unstructured and structured environments for mobile robots. 
@@ -31,6 +32,7 @@ Cobra comprises four **modules**:
 
 Click on the following links to install Cobra's modules and get started! 
 It is very easy to install!
+-->
 
 #### Overall Results of Cobra
 
@@ -41,7 +43,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_fusionportable.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/r3live_nvblox_Mapping.gif" width="80%" 
+      <img src="docs/media/r3live_nvblox_Mapping.gif" width="60%" 
       alt="r3live_nvblox_Mapping">
    </a>
 </div>
@@ -53,7 +55,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="80%" 
+      <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="60%" 
       alt="nvblox_mesh_semantickitti07">
    </a>   
 </div>
@@ -76,6 +78,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
 
 <!-- ![overall_chart]() -->
 
+<!--
 ## 1. Installation
 We provide the [DockerFile](docker/Dockerfile_x86) or the compiled docker image:
 ```
@@ -107,6 +110,7 @@ Test with the **SemanticKITTI** Dataset
 ```
 bash scripts/run_cobra_semantickitti.sh
 ```
+-->
 
 ## Citation
 
@@ -125,6 +129,7 @@ If you found any of the above modules useful, we would really appreciate if you 
 }
 ```
 
+<!--
 ## Open-Source Datasets
 
 We release an open-source dataset: [FusionPortable](https://ram-lab.com/file/site/fusionportable/dataset/fusionportable) [1] for real-life tests. 
@@ -137,6 +142,7 @@ The dataset provides:
 - (Optional: Ground-truth 2D Semantic Segmentation))
 - (Optional: TF (ground-truth odometry of robots, and agents))
 - (Optional: Static TF (ground-truth poses of static objects))
+-->
 
 ## Acknowledgments
 
