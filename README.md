@@ -88,7 +88,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
 **Navigation**: 
 <div align="center">
     <a href="">
-      <img src="docs/media/result_navigation_sequence01_test_1_5x.gif" width="50%" 
+      <img src="docs/media/result_navigation_sequence01_test_1_5x.gif" width="47.5%" 
       alt="result_navigation_sequence01_test_1_5x">
    </a>   
 </div>
