@@ -138,30 +138,34 @@ RUN pip3 install -U g2o-python
 RUN pip3 install pandas
 
 # ############### Open3D (C++)
-# RUN apt-get update && apt-get install -y libglfw3-dev
-# RUN apt-get install -y \
-#     # Open3D deps \
-#     xorg-dev \
-#     libglu1-mesa-dev \
-#     python3-dev \
-#     # Filament build-from-source deps \
-#     libsdl2-dev \
-#     libc++-7-dev \
-#     libc++abi-7-dev \
-#     ninja-build \
-#     libxi-dev \
-#     # OpenBLAS build-from-source deps \
-#     gfortran \
-#     # ML deps \
-#     libtbb-dev \
-#     # Headless rendering deps \
-#     libosmesa6-dev \
-#     # RealSense deps \
-#     libudev-dev \
-#     autoconf \
-#     libtool
-# RUN git clone https://github.com/isl-org/Open3D
-# RUN cd Open3D && mkdir build && cd build && cmake .. && make -j4 && make install 
+COPY docker/kitware_archive.sh /usr/app/kitware_archive.sh
+RUN bash /usr/app/kitware_archive.sh
+RUN apt install cmake -y
+RUN cd /usr/app/
+RUN apt-get update && apt-get install -y libglfw3-dev
+RUN apt-get install -y \
+    # Open3D deps \
+    xorg-dev \
+    libglu1-mesa-dev \
+    python3-dev \
+    # Filament build-from-source deps \
+    libsdl2-dev \
+    libc++-7-dev \
+    libc++abi-7-dev \
+    ninja-build \
+    libxi-dev \
+    # OpenBLAS build-from-source deps \
+    gfortran \
+    # ML deps \
+    libtbb-dev \
+    # Headless rendering deps \
+    libosmesa6-dev \
+    # RealSense deps \
+    libudev-dev \
+    autoconf \
+    libtool
+RUN git clone https://github.com/isl-org/Open3D
+RUN cd Open3D && mkdir build && cd build && cmake .. && make -j4 && make install 
 
 ############### Open3D (GUI)
 RUN apt-get install -y libgl1-mesa-glx libc++1 libc++1-10 libc++abi1-10 libglfw3 libpng16-16

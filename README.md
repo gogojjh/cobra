@@ -1,22 +1,21 @@
 <div align="center">
-  <a href="">
+  <!-- <a href="">
     <img align="left" src="docs/media/IADC_logo.png" height="100" alt="IADC">
-  </a>
+  </a> -->
   <a href="">
     <img align="center" src="docs/media/cobra_logo.png" height="130" alt="cobra">
   </a>
   <!-- <a href="">
     <img align="" src="docs/media/hkustgz_logo.png" height="80" alt="hkustgz">
   </a>   -->
-  <a href="">
+  <!-- <a href="">
     <img align="right" src="docs/media/hkust_only_pattern.png" height="100" alt="hkustgz">
-  </a>    
+  </a>     -->
 </div>
 
 # Cobra
 
-Cobra is a C++/Python library for metric-semantic-driven navigation in both unstructured and structured environments for mobile robots. 
-Cobra is modular, ROS-enabled, and runs on CPU+GPU.
+Cobra is a C++/Python library for metric-semantic-driven navigation in both unstructured and structured environments for mobile robots. Cobra is modular, ROS-enabled, and runs on CPU+GPU.
 
 Cobra comprises four **modules**:
 - A fast and accurate LiDAR-Vision-Inertial Odometry (LVIO) ([Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live))
@@ -27,9 +26,9 @@ Cobra comprises four **modules**:
 <!--
 - A solver for trajectory optimization (local planner) and control ([TBC](xxx))
 -->
-- Tool functions:
-  - A toolbox to support the debug and monitor of Cobra ([Cobra-Tool](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools))
-  - A tool to convert LiDAR points into depth/height images ([Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter))
+<!-- - Tool functions:
+  - A toolbox to support the debug and monitor of Cobra ([Cobra-Tool](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools)) -->
+- A tool to convert LiDAR points into depth/height images ([Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter))
 
 Click on the following links to install Cobra's modules and get started! 
 
@@ -54,8 +53,8 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/nvblox_mesh_semantickitti07.gif" width="50%" 
-      alt="nvblox_mesh_semantickitti07">
+      <img src="docs/media/result_mesh_semantickitti07.gif" width="50%" 
+      alt="result_mesh_semantickitti07">
    </a>   
 </div>
 
@@ -66,15 +65,33 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
 ```
 <div align="center">
     <a href="">
-      <img src="docs/media/nvblox_mesh_2013_05_28_drive_0003_sync.gif" width="50%" 
-      alt="nvblox_mesh_2013_05_28_drive_0003_sync">
+      <img src="docs/media/result_mesh_2013_05_28_drive_0003_sync.gif" width="50%" 
+      alt="result_mesh_2013_05_28_drive_0003_sync">
+   </a>   
+</div>
+
+**Mapping**: FusionPortable (Image-based semantics)
+<div align="center">
+    <a href="">
+      <img src="docs/media/result_semanticfusionportable_sequence01_4x_playrate.gif" width="47%" 
+      alt="result_semanticfusionportable_sequence01_4x_playrate">
+   </a>   
+</div>
+<p></p>
+<div align="center">
+    <a href="">
+      <img src="docs/media/result_mesh_fusionportable.gif" width="50%" 
+      alt="result_mesh_fusionportable">
    </a>   
 </div>
 
 **Navigation**: 
-```
-xxx
-```
+<div align="center">
+    <a href="">
+      <img src="docs/media/result_mesh_fusionportable.gif" width="45%" 
+      alt="result_mesh_fusionportable">
+   </a>   
+</div>
 
 
 ## Chart
@@ -114,7 +131,7 @@ mkdir build && cd build && cmake .. && make -j3
 ```
 Complie other packages
 ```shell script
-catkin build r3live pointcloud_image_converter cobra_tools nvblox_ros
+catkin build r3live pointcloud_image_converter cobra_tools nvblox_ros -DCMAKE_BUILD_TYPE=Release
 ```
 <!--
 Please follow the below tutorial to install individual packages
@@ -163,7 +180,7 @@ performance_monitor: 0 (not monitor CPU and GPU usage), 1 (monitor CPU and GPU u
 
 If you found any of the above modules useful, we would really appreciate if you could cite our work:
 
-- [1] Jiao, J., Ruoyu, G., Yuanhang, L., Ren, X., Bowen, Y., ... & Liu, M. [**Real-Time Metric-Semantic Mapping for Autonomous Navigation in Outdoor Environments**](). submitted to TASE2024.
+<!-- - [1] Jiao, J., Ruoyu, G., Yuanhang, L., Ren, X., Bowen, Y., ... & Liu, M. [**Real-Time Metric-Semantic Mapping for Autonomous Navigation in Outdoor Environments**](). submitted to TASE2024.
 
 ```bibtex
 @inproceedings{jiao2022fusionportable,
@@ -174,7 +191,7 @@ If you found any of the above modules useful, we would really appreciate if you 
   year={2022},
   organization={IEEE}
 }
-```
+``` -->
 
 - [2] Jiao, J., Wei, H., Hu, T., Hu, X., Zhu, Y., ... & Liu, M. [**FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms**](https://arxiv.org/abs/2208.11865). In 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE.
 
@@ -191,16 +208,15 @@ If you found any of the above modules useful, we would really appreciate if you 
 
 ## Open-Source Datasets
 
-We release an open-source dataset: [FusionPortable](https://ram-lab.com/file/site/fusionportable/dataset/fusionportable) [1] for real-life tests. 
-The dataset provides:
+We release an open-source dataset: [FusionPortable](https://ram-lab.com/file/site/fusionportable/dataset/fusionportable) [1] for real-life tests. The dataset provides:
 - 3D LiDAR
 - Stereo Frame Cameras
 - Stereo Event Cameras
 - IMU data
 - Ground-Truth Odometry
-- (Optional: Ground-truth 2D Semantic Segmentation))
-- (Optional: TF (ground-truth odometry of robots, and agents))
-- (Optional: Static TF (ground-truth poses of static objects))
+- Static TF (ground-truth poses of static objects)
+<!-- - (Optional: Ground-truth 2D Semantic Segmentation))
+- (Optional: TF (ground-truth odometry of robots, and agents)) -->
 
 ## Acknowledgments
 

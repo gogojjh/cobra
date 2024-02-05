@@ -105,60 +105,60 @@ RUN apt-get update && apt-get install -y \
   ros-${ROS_DISTRO}-image-transport \
   ros-${ROS_DISTRO}-image-transport* 
 
-# # Install Python apt dependencies
-# RUN apt-get install --no-install-recommends -y \
-#   python3 \
-#   python3-numpy \
-#   python3-pip \
-#   python3-vcstool \
-#   && rm -rf /var/lib/apt/lists/*
+# Install Python apt dependencies
+RUN apt-get install --no-install-recommends -y \
+  python3 \
+  python3-numpy \
+  python3-pip \
+  python3-vcstool \
+  && rm -rf /var/lib/apt/lists/*
 
-# # Install Python pip dependencies
-# RUN pip3 install --upgrade pip
-# RUN pip3 install --upgrade \
-#   numpy \
-#   pytest \
-#   setuptools \
-#   twine \
-#   opencv-python
+# Install Python pip dependencies
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade \
+  numpy \
+  pytest \
+  setuptools \
+  twine \
+  opencv-python
 
-# # Install R3LIVE-related packages
-# RUN git clone https://github.com/Livox-SDK/Livox-SDK.git \
-#   && cd Livox-SDK && cd build && cmake .. && make -j4 && make install\
-#   && rm -r ../../Livox-SDK
+# Install R3LIVE-related packages
+RUN git clone https://github.com/Livox-SDK/Livox-SDK.git \
+  && cd Livox-SDK && cd build && cmake .. && make -j4 && make install\
+  && rm -r ../../Livox-SDK
 
-# RUN apt update
-# RUN apt-get install -y libcgal-dev pcl-tools
-# RUN apt-get install -y libopencv-dev python3-opencv
+RUN apt update
+RUN apt-get install -y libcgal-dev pcl-tools
+RUN apt-get install -y libopencv-dev python3-opencv
 
-# RUN mv /usr/include/flann/ext/lz4.h /usr/include/flann/ext/lz4.h.bck
-# RUN mv /usr/include/flann/ext/lz4hc.h /usr/include/flann/ext/lz4hc.h.bck
-# RUN ln -s /usr/include/lz4.h /usr/include/flann/ext/lz4.h
-# RUN ln -s /usr/include/lz4hc.h /usr/include/flann/ext/lz4hc.h
+RUN mv /usr/include/flann/ext/lz4.h /usr/include/flann/ext/lz4.h.bck
+RUN mv /usr/include/flann/ext/lz4hc.h /usr/include/flann/ext/lz4hc.h.bck
+RUN ln -s /usr/include/lz4.h /usr/include/flann/ext/lz4.h
+RUN ln -s /usr/include/lz4hc.h /usr/include/flann/ext/lz4hc.h
 
-############### Segnet (Segmentation)
-# ENV DEBIAN_FRONTEND noninteractive
-# RUN apt update && apt install -y --no-install-recommends \
-#   git curl wget zsh tmux vim g++
+############## Segnet (Segmentation)
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt update && apt install -y --no-install-recommends \
+  git curl wget zsh tmux vim g++
 
-# RUN apt-get install -y \
-#   ros-${ROS_DISTRO}-ros-numpy \
-#   ros-${ROS_DISTRO}-vision-msgs
+RUN apt-get install -y \
+  ros-${ROS_DISTRO}-ros-numpy \
+  ros-${ROS_DISTRO}-vision-msgs
 
-# RUN mkdir /usr/app/segnet_requirements
-# COPY segnet/requirements.txt /usr/app/segnet/requirements.txt
-# RUN pip3 install -r /usr/app/segnet/requirements.txt
+RUN mkdir /usr/app/segnet_requirements
+COPY segnet/requirements.txt /usr/app/segnet/requirements.txt
+RUN pip3 install -r /usr/app/segnet/requirements.txt
 
-############### Cobra-Planner
-# RUN pip3 install open3d --ignore-installed PyYAML
-# RUN pip3 install --upgrade numexpr
-# RUN pip3 install -U g2o-python
+############## Cobra-Planner
+RUN pip3 install open3d --ignore-installed PyYAML
+RUN pip3 install --upgrade numexpr
+RUN pip3 install -U g2o-python
 
-############### Tools
-# RUN pip3 install pandas
+############## Tools
+RUN pip3 install pandas
 
-############### Open3D (GUI)
-# RUN apt-get install libgl1-mesa-glx libc++1 libc++1-10 libc++abi1-10 libglfw3 libpng16-16
-# RUN wget https://github.com/isl-org/Open3D/releases/download/v0.13.0/open3d-app-0.13.0-Ubuntu_20.04.deb
-# RUN dpkg -i open3d-app-0.13.0-Ubuntu_20.04.deb
+############## Open3D (GUI)
+RUN apt-get install libgl1-mesa-glx libc++1 libc++1-10 libc++abi1-10 libglfw3 libpng16-16
+RUN wget https://github.com/isl-org/Open3D/releases/download/v0.13.0/open3d-app-0.13.0-Ubuntu_20.04.deb
+RUN dpkg -i open3d-app-0.13.0-Ubuntu_20.04.deb
 
