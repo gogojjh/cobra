@@ -4,7 +4,7 @@
   </a> -->
   <a href="">
     <img align="center" src="docs/media/cobra_logo.png" height="130" alt="cobra">
-  </a>
+  </a> 
   <!-- <a href="">
     <img align="" src="docs/media/hkustgz_logo.png" height="80" alt="hkustgz">
   </a>   -->
@@ -13,6 +13,7 @@
   </a>     -->
 </div>
 
+<!--
 # Cobra
 
 Cobra is a C++/Python library for metric-semantic-driven navigation in both unstructured and structured environments for mobile robots. Cobra is modular, ROS-enabled, and runs on CPU+GPU.
@@ -28,9 +29,9 @@ Cobra comprises four **modules**:
 -->
 <!-- - Tool functions:
   - A toolbox to support the debug and monitor of Cobra ([Cobra-Tool](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools)) -->
-- A tool to convert LiDAR points into depth/height images ([Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter))
+<!-- - A tool to convert LiDAR points into depth/height images ([Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter)) -->
 
-Click on the following links to install Cobra's modules and get started! 
+<!-- Click on the following links to install Cobra's modules and get started!  -->
 
 #### Results of Cobra
 
@@ -98,6 +99,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
 
 <!-- ![overall_chart]() -->
 
+<!--
 ## 1. Installation
 Clone the code
 ```shell script
@@ -205,6 +207,7 @@ If you found any of the above modules useful, we would really appreciate if you 
   organization={IEEE}
 }
 ```
+
 
 ## Open-Source Datasets
 
