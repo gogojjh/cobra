@@ -33,24 +33,70 @@ Cobra comprises four **modules**:
 
 <!-- Click on the following links to install Cobra's modules and get started!  -->
 
-#### Results of Cobra
+## 1. Installation
+Clone the code
+```shell script
+mkdir -p catkin_ws/src
+cd catkin_ws/src
+git clone https://github.com/HKUSTGZ-IADC/cobra --recursive 
+wstool merge cobra/cobra_https.rosinstall
+wstool update
+cd cobra
+```
+Build the docker environment **(X86 PC)**: change the cuda version of **Dockerfile_x86** (first line) for you GPU 
+```shell script
+docker build -t cobra_x86:ros_noetic-py3-torch-cuda -f docker/Dockerfile_x86 .
+```
+Build the docker environment **(Jetson - ARM PC)**
+```shell script
+docker build -t cobra_jetson:ros_noetic-py3-torch-jetpackr35 -f docker/Dockerfile_jetson .
+```
+Create the docker container
+```shell script
+docker pull cobra_x86:ros_noetic-py3-torch-cuda
+nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  -v volume_path_to_host:volume_path_to_docker \
+  --privileged --cap-add sys_ptrace \
+  -it --name cobra cobra_x86:ros_noetic-py3-torch-cuda \
+  /bin/bash
+```
+Compile the nvblox
+```shell script
+cd src/glimpse_nvblox_ros1/nvblox/nvblox
+mkdir build && cd build && cmake .. && make -j3
+```
+Complie other packages
+```shell script
+catkin build pointcloud_image_converter nvblox_ros -DCMAKE_BUILD_TYPE=Release
 
-**Mapping**: Campus (without semantics)
 ```
-roslaunch r3live r3live_bag_ouster128_raw.launch
-roslaunch nvblox_ros nvblox_lidar_ros_fusionportable.launch
-```
-<div align="center">
-    <a href="">
-      <img src="docs/media/r3live_nvblox_Mapping.gif" width="50%" 
-      alt="r3live_nvblox_Mapping">
-   </a>
-</div>
+<!--
+Please follow the below tutorial to install individual packages
+* [Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
+* [Cobra-Semantics](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/hkustgz_segnet)
+* [Cobra-Mapping](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/nvblox)
+* [Cobra-Planner](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_planner)
+* [Cobra-Tool](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools)
+* [Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter)
+-->
+
+
+## 2. Open-Source Datasets
+
+We release an open-source dataset in [Google Drive](https://drive.google.com/drive/folders/160aA4naMKBFRpjt8f0LUYCYSrWYrER5G?usp=sharing) for real-world tests. The dataset provides:
+- 3D LiDAR
+- IMU data
+- Ground-Truth Odometry
+- (Optional: Image)
+- (Optional: Estimated 2D Semantic Segmentation)
+
+## 3. Results
 
 **Mapping**: SemanticKITTI Sequence07 (LiDAR-based semantics)
 ```
 rosbag play semantickitti_sequence07.bag
-roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
+roslaunch nvblox_ros nvblox_lidar_ros_semantickitti.launch
 ```
 <div align="center">
     <a href="">
@@ -59,7 +105,7 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti.launch
    </a>   
 </div>
 
-**Mapping**: KITTI-360 (Image-based semantics) 
+<!-- **Mapping**: KITTI-360 (Image-based semantics) 
 ```
 rosbag play nvblox_mesh_2013_05_28_drive_0003_sync.bag
 roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
@@ -69,16 +115,24 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
       <img src="docs/media/result_mesh_2013_05_28_drive_0003_sync.gif" width="50%" 
       alt="result_mesh_2013_05_28_drive_0003_sync">
    </a>   
-</div>
+</div> -->
 
-**Mapping**: FusionPortable (Image-based semantics)
+**Mapping**: FusionPortable (With Image-based semantics)
+```
+rosbag play 20230403_hkustgz_vegetation_sequence00_r3live_semantics_framecam00.bag
+roslaunch nvblox_ros nvblox_lidar_ros_semanticfusionportable.launch
+```
 <div align="center">
     <a href="">
       <img src="docs/media/result_semanticfusionportable_sequence01_4x_playrate.gif" width="47%" 
       alt="result_semanticfusionportable_sequence01_4x_playrate">
    </a>   
 </div>
-<p></p>
+
+```
+rosbag play 20220226_campus_road_day_r3live_semantics_framecam00.bag
+roslaunch nvblox_ros nvblox_lidar_ros_semanticfusionportable.launch
+```
 <div align="center">
     <a href="">
       <img src="docs/media/result_mesh_fusionportable.gif" width="50%" 
@@ -95,108 +149,21 @@ roslaunch nvblox_ros nvblox_lidar_ros_kitti360.launch
 </div>
 
 
-## Chart
-
-<!-- ![overall_chart]() -->
-
-<!--
-## 1. Installation
-Clone the code
-```shell script
-git clone http://gitlab.ram-lab.com/ramlab_dataset_sensor/cobra --recursive 
-wstool merge cobra/cobra_https.rosinstall
-wstool update
-cd cobra
-```
-Build the docker environment **(X86 PC)**: change the cuda version of **Dockerfile_x86** (first line) for you GPU 
-```shell script
-docker build -t cobra_x86:20240124-ros_noetic-py3-torch-cuda -f docker/Dockerfile_x86 .
-```
-Build the docker environment **(Jetson - ARM PC)**
-```shell script
-docker build -t cobra_jetson:20240124-ros_noetic-py3-torch-jetpackr35 -f docker/Dockerfile_jetson .
-```
-Create the docker container
-```shell script
-docker pull cobra_x86:20240124-ros_noetic-py3-torch-cuda
-nvidia-docker run -e DISPLAY -v ~/.Xauthority:/root/.Xauthority:rw --network host \
-  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-  -v volume_path_to_host:volume_path_to_docker \
-  --privileged --cap-add sys_ptrace \
-  -it --name cobra cobra_x86:20240124-ros_noetic-py3-torch-cuda \
-  /bin/bash
-```
-Compile the nvblox
-```shell script
-cd src/glimpse_nvblox_ros1/nvblox/nvblox
-mkdir build && cd build && cmake .. && make -j3
-```
-Complie other packages
-```shell script
-catkin build r3live pointcloud_image_converter cobra_tools nvblox_ros -DCMAKE_BUILD_TYPE=Release
-```
-<!--
-Please follow the below tutorial to install individual packages
-* [Cobra-State-Estimation](http://gitlab.ram-lab.com/ramlab_dataset_sensor/code/r3live)
-* [Cobra-Semantics](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/hkustgz_segnet)
-* [Cobra-Mapping](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/nvblox)
-* [Cobra-Planner](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_planner)
-* [Cobra-Tool](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/cobra_tools)
-* [Cobra-Tool-p2img](http://gitlab.ram-lab.com/ramlab_dataset_sensor/mapping_codebase/pointcloud_image_converter)
--->
-
-## 2. Usage
-Test with the **FusionPortable** Dataset
-```shell script
-bash scripts/run_cobra_fusionportable.sh
-```
-Test with the **SemanticFusionPortable** Dataset
-```shell script
-bash scripts/run_cobra_semanticfusionportable.sh
-```
-Test with the **SemanticKITTI** Dataset
-```shell script
-bash scripts/run_cobra_semantickitti.sh
-```
-Batch test with all datasets
-```shell script
-rosparam set use_sim_time true
-cd src/cobra_tools/scripts/bash
-bash run_nvblox_proposed.bash
-```
-Monitor the CPU, GPU, and memory of the PC
-```shell script
-rosrun cobra_tools monitor_pc_status.py -c /Spy/dataset/tmp/logs/cpu_gpu_utils_0.1
-```
-
-## 3. Key parameters
-```
-voxel_size: 0.3 (SemanticKITTI00, 02, 08), 0.25 (other sequences)
-mesh: 0 (not save mesh result), 1 (save mesh result)
-dataset_type: the id of different datasets
-max_mesh_update_time: the frequency of saving mesh. For example: 0.1 for 10Hz
-performance_monitor: 0 (not monitor CPU and GPU usage), 1 (monitor CPU and GPU usage)
-```
-
 ## Citation
 
 If you found any of the above modules useful, we would really appreciate if you could cite our work:
 
-<!-- - [1] Jiao, J., Ruoyu, G., Yuanhang, L., Ren, X., Bowen, Y., ... & Liu, M. [**Real-Time Metric-Semantic Mapping for Autonomous Navigation in Outdoor Environments**](). submitted to TASE2024.
-
 ```bibtex
-@inproceedings{jiao2022fusionportable,
+@article{jiao2024real,
   title={Real-Time Metric-Semantic Mapping for Autonomous Navigation in Outdoor Environments},
-  author={Jiao, Jianhao and Wei, Hexiang and Hu, Tianshuai and Hu, Xiangcheng and Zhu, Yilong and He, Zhijian and Wu, Jin and Yu, Jingwen and Xie, Xupeng and Huang, Huaiyang and others},
-  booktitle={2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  pages={3851--3856},
-  year={2022},
-  organization={IEEE}
+  author={Jiao, Jianhao and Geng, Ruoyu and Li, Yuanhang and Xin, Ren and Yang, Bowen and Wu, Jin and Wang, Lujia and Liu, Ming and Fan, Rui and Kanoulas, Dimitrios},
+  journal={IEEE Transactions on Automation Science and Engineering},
+  year={2024},
+  publisher={IEEE}
 }
-``` -->
+``` 
 
-- [2] Jiao, J., Wei, H., Hu, T., Hu, X., Zhu, Y., ... & Liu, M. [**FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms**](https://arxiv.org/abs/2208.11865). In 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE.
-
+Dataset:
 ```bibtex
 @inproceedings{jiao2022fusionportable,
   title={FusionPortable: A Multi-Sensor Campus-Scene Dataset for Evaluation of Localization and Mapping Accuracy on Diverse Platforms},
@@ -207,19 +174,6 @@ If you found any of the above modules useful, we would really appreciate if you 
   organization={IEEE}
 }
 ```
-
-
-## Open-Source Datasets
-
-We release an open-source dataset: [FusionPortable](https://ram-lab.com/file/site/fusionportable/dataset/fusionportable) [1] for real-life tests. The dataset provides:
-- 3D LiDAR
-- Stereo Frame Cameras
-- Stereo Event Cameras
-- IMU data
-- Ground-Truth Odometry
-- Static TF (ground-truth poses of static objects)
-<!-- - (Optional: Ground-truth 2D Semantic Segmentation))
-- (Optional: TF (ground-truth odometry of robots, and agents)) -->
 
 ## Acknowledgments
 
