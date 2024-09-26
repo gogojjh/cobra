@@ -58,14 +58,15 @@ catkin build pointcloud_image_converter nvblox_ros nvblox_rviz_plugin -DCMAKE_BU
 We release an open-source dataset in [Google Drive](https://drive.google.com/drive/folders/160aA4naMKBFRpjt8f0LUYCYSrWYrER5G?usp=sharing) for real-world tests. The dataset provides:
 - 3D LiDAR
 - IMU data
-- Ground-Truth Odometry
+- Estimated Odometry
 - (Optional: Image)
 - (Optional: Estimated 2D Semantic Segmentation)
 
 ## 3. Results
+NOTE: set ```max_mesh_update_time``` as the mesh publish frequency and save mesh to ```/tmp/mesh_nvblox.ply``` in ```launch``` files
 
 **Mapping**: SemanticKITTI Sequence07 (LiDAR-based semantics)
-# NOTE: set ```max_mesh_update_time``` as the mesh publish frequency and save mesh to ```/tmp/mesh_nvblox.ply```
+
 ```
 roslaunch nvblox_ros nvblox_lidar_ros_semantickitti.launch bag_file:=semantickitti_sequence07.bag
 ```
